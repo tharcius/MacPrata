@@ -171,11 +171,11 @@ return [
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        MacPrata\Providers\AppServiceProvider::class,
+        MacPrata\Providers\AuthServiceProvider::class,
+        // MacPrata\Providers\BroadcastServiceProvider::class,
+        MacPrata\Providers\EventServiceProvider::class,
+        MacPrata\Providers\RouteServiceProvider::class,
 
     ],
 
