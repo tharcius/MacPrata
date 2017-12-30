@@ -1,6 +1,6 @@
 <?php
 
-namespace MacPrata;
+namespace MacPrata\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 
