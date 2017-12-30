@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Repositories;
+namespace MacPrata\Repositories;
 
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use App\Repositories\OrderRepository;
-use App\Entities\Order;
-use App\Validators\OrderValidator;
+use MacPrata\Repositories\OrderRepository;
+use MacPrata\Entities\Order;
+use MacPrata\Validators\OrderValidator;
 
 /**
  * Class OrderRepositoryEloquent
- * @package namespace App\Repositories;
+ * @package namespace MacPrata\Repositories;
  */
 class OrderRepositoryEloquent extends BaseRepository implements OrderRepository
 {

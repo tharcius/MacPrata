@@ -23,6 +23,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind(\MacPrata\Repositories\PersonRepository::class, \MacPrata\Repositories\PersonRepositoryEloquent::class);
+        $this->app->bind(\MacPrata\Repositories\EquipmentRepository::class, \MacPrata\Repositories\EquipmentRepositoryEloquent::class);
+        $this->app->bind(\MacPrata\Repositories\ServiceRepository::class, \MacPrata\Repositories\ServiceRepositoryEloquent::class);
+        $this->app->bind(\MacPrata\Repositories\OrderRepository::class, \MacPrata\Repositories\OrderRepositoryEloquent::class);
+        $this->app->bind(\MacPrata\Repositories\ProductRepository::class, \MacPrata\Repositories\ProductRepositoryEloquent::class);
+        $this->app->bind(\MacPrata\Repositories\OrderRepository::class, \MacPrata\Repositories\OrderRepositoryEloquent::class);
     }
 }

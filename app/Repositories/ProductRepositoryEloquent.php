@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Repositories;
+namespace MacPrata\Repositories;
 
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use App\Repositories\ProductRepository;
-use App\Entities\Product;
-use App\Validators\ProductValidator;
+use MacPrata\Repositories\ProductRepository;
+use MacPrata\Entities\Product;
+use MacPrata\Validators\ProductValidator;
 
 /**
  * Class ProductRepositoryEloquent
- * @package namespace App\Repositories;
+ * @package namespace MacPrata\Repositories;
  */
 class ProductRepositoryEloquent extends BaseRepository implements ProductRepository
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace MacPrata\Http\Controllers;
 
 use Illuminate\Http\Request;
 
@@ -9,8 +9,8 @@ use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
 use MacPrata\Http\Requests\EquipmentCreateRequest;
 use MacPrata\Http\Requests\EquipmentUpdateRequest;
-use App\Repositories\EquipmentRepository;
-use App\Validators\EquipmentValidator;
+use MacPrata\Repositories\EquipmentRepository;
+use MacPrata\Validators\EquipmentValidator;
 
 
 class EquipmentController extends Controller

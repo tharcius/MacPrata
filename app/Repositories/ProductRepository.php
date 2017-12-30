@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Repositories;
+namespace MacPrata\Repositories;
 
 use Prettus\Repository\Contracts\RepositoryInterface;
 
 /**
  * Interface ProductRepository
- * @package namespace App\Repositories;
+ * @package namespace MacPrata\Repositories;
  */
 interface ProductRepository extends RepositoryInterface
 {

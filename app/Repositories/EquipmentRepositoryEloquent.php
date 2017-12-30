@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Repositories;
+namespace MacPrata\Repositories;
 
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use App\Repositories\EquipmentRepository;
-use App\Entities\Equipment;
-use App\Validators\EquipmentValidator;
+use MacPrata\Repositories\EquipmentRepository;
+use MacPrata\Entities\Equipment;
+use MacPrata\Validators\EquipmentValidator;
 
 /**
  * Class EquipmentRepositoryEloquent
- * @package namespace App\Repositories;
+ * @package namespace MacPrata\Repositories;
  */
 class EquipmentRepositoryEloquent extends BaseRepository implements EquipmentRepository
 {

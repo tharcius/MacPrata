@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace MacPrata\Http\Controllers;
 
 use Illuminate\Http\Request;
 
@@ -9,8 +9,8 @@ use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
 use MacPrata\Http\Requests\ProductCreateRequest;
 use MacPrata\Http\Requests\ProductUpdateRequest;
-use App\Repositories\ProductRepository;
-use App\Validators\ProductValidator;
+use MacPrata\Repositories\ProductRepository;
+use MacPrata\Validators\ProductValidator;
 
 
 class ProductsController extends Controller

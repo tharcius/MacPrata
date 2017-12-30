@@ -1,16 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace MacPrata\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use MacPrata\Http\Requests;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
 use MacPrata\Http\Requests\OrderCreateRequest;
 use MacPrata\Http\Requests\OrderUpdateRequest;
-use App\Repositories\OrderRepository;
-use App\Validators\OrderValidator;
+use MacPrata\Repositories\OrderRepository;
+use MacPrata\Validators\OrderValidator;
 
 
 class OrdersController extends Controller

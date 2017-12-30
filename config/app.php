@@ -176,6 +176,7 @@ return [
         // MacPrata\Providers\BroadcastServiceProvider::class,
         MacPrata\Providers\EventServiceProvider::class,
         MacPrata\Providers\RouteServiceProvider::class,
+        MacPrata\Providers\AppServiceProvider::class
 
     ],
 
