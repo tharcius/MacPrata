@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePeopleTable extends Migration
+class CreateProductsTable extends Migration
 {
 
 	/**
@@ -13,11 +13,12 @@ class CreatePeopleTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('people', function(Blueprint $table) {
+		Schema::create('products', function(Blueprint $table) {
             $table->increments('id');
 			$table->string('name', 60);
-			$table->string('phone', 20);
-			$table->string('email', 100);
+            $table->string('unity', 2);
+            $table->decimal('value',8,2);
+			$table->enum('type',['service', 'product']);
             $table->softDeletes();
             $table->timestamps();
 		});
@@ -30,7 +31,7 @@ class CreatePeopleTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::drop('people');
+		Schema::drop('products');
 	}
 
 }
