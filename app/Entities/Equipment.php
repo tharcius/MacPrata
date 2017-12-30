@@ -21,4 +21,7 @@ class Equipment extends Model implements Transformable
         'obs'
 	];
 
+    public function orders(){
+        return $this->hasMany(Order::class);
+    }
 }

@@ -18,4 +18,7 @@ class Person extends Model implements Transformable
         'email'
 	];
 
+    public function orders(){
+        return $this->hasMany(Order::class);
+    }
 }

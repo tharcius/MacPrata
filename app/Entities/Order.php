@@ -20,4 +20,17 @@ class Order extends Model implements Transformable
 		'equipment_id',
 	];
 
+    public function person(){
+        return $this->belongsTo(Person::class);
+    }
+
+    public function equipment(){
+        return $this->belongsTo(Equipment::class);
+    }
+
+    public function products()
+    {
+        return $this->belongsToMany(Product::class, 'order_product', 'order_id', 'product_id');
+    }
+
 }
