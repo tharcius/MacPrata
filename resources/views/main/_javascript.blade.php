@@ -1,14 +1,9 @@
-<!-- Bootstrap and necessary plugins -->
-<script src="js/libs/jquery.min.js"></script>
-<script src="js/libs/tether.min.js"></script>
-<script src="js/libs/bootstrap.min.js"></script>
-<script src="js/libs/pace.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.7/js/tether.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+<script src="{{ asset('coreui/js/app.js') }}"></script>
 
-<!-- Main scripts -->
-<script src="js/app.js"></script>
-
-<!-- Plugins and scripts required by this views -->
-<script src="..."></script>
-
-<!-- Custom scripts required by this view -->
-<script src="..."></script>
+</body>
+</html>

@@ -12,3 +12,11 @@
 */
 
 Route::get('/', 'OrdersController@index');
+Route::group(['prefix'=>'ordens'], function (){
+    Route::get('/', 'OrdersController@index');
+    Route::put('/', 'OrdersController@store');
+    Route::get('/{id}', 'OrdersController@show');
+    Route::put('/{id}', 'OrdersController@update');
+    Route::get('/{id}/editar', 'OrdersController@edit');
+    Route::get('/{id}/apagar', 'OrdersController@destroy');
+});

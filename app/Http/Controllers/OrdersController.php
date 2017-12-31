@@ -1,13 +1,9 @@
 <?php
 
 namespace MacPrata\Http\Controllers;
-
 use Illuminate\Http\Request;
-
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
-use MacPrata\Http\Requests\OrderCreateRequest;
-use MacPrata\Http\Requests\OrderUpdateRequest;
 use MacPrata\Repositories\OrderRepository;
 use MacPrata\Validators\OrderValidator;
 
@@ -24,11 +20,16 @@ class OrdersController extends Controller
      * @var OrderValidator
      */
     protected $validator;
+    /**
+     * @var Request
+     */
+    private $request;
 
-    public function __construct(OrderRepository $repository, OrderValidator $validator)
+    public function __construct(OrderRepository $repository, OrderValidator $validator, Request $request)
     {
         $this->repository = $repository;
-        $this->validator  = $validator;
+        $this->validator = $validator;
+        $this->request = $request;
     }
 
 
@@ -41,14 +42,6 @@ class OrdersController extends Controller
     {
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
         $orders = $this->repository->all();
-
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'data' => $orders,
-            ]);
-        }
-
         return view('orders.index', compact('orders'));
     }
 
@@ -59,34 +52,23 @@ class OrdersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(OrderCreateRequest $request)
+    public function store()
     {
-
         try {
-
-            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
-
-            $order = $this->repository->create($request->all());
-
+            $this->validator->with($this->request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
+            $order = $this->repository->create($this->request->all());
             $response = [
                 'message' => 'Order created.',
-                'data'    => $order->toArray(),
+                'data' => $order->toArray(),
             ];
-
-            if ($request->wantsJson()) {
-
-                return response()->json($response);
-            }
-
             return redirect()->back()->with('message', $response['message']);
         } catch (ValidatorException $e) {
-            if ($request->wantsJson()) {
+            if ($this->request->wantsJson()) {
                 return response()->json([
-                    'error'   => true,
+                    'error' => true,
                     'message' => $e->getMessageBag()
                 ]);
             }
-
             return redirect()->back()->withErrors($e->getMessageBag())->withInput();
         }
     }
@@ -102,14 +84,11 @@ class OrdersController extends Controller
     public function show($id)
     {
         $order = $this->repository->find($id);
-
         if (request()->wantsJson()) {
-
             return response()->json([
                 'data' => $order,
             ]);
         }
-
         return view('orders.show', compact('order'));
     }
 
@@ -123,9 +102,7 @@ class OrdersController extends Controller
      */
     public function edit($id)
     {
-
         $order = $this->repository->find($id);
-
         return view('orders.edit', compact('order'));
     }
 
@@ -134,40 +111,30 @@ class OrdersController extends Controller
      * Update the specified resource in storage.
      *
      * @param  OrderUpdateRequest $request
-     * @param  string            $id
+     * @param  string $id
      *
      * @return Response
      */
-    public function update(OrderUpdateRequest $request, $id)
+    public function update($id)
     {
-
         try {
-
-            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
-
-            $order = $this->repository->update($request->all(), $id);
-
+            $this->validator->with($this->request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
+            $order = $this->repository->update($this->request->all(), $id);
             $response = [
                 'message' => 'Order updated.',
-                'data'    => $order->toArray(),
+                'data' => $order->toArray(),
             ];
-
-            if ($request->wantsJson()) {
-
+            if ($this->request->wantsJson()) {
                 return response()->json($response);
             }
-
             return redirect()->back()->with('message', $response['message']);
         } catch (ValidatorException $e) {
-
-            if ($request->wantsJson()) {
-
+            if ($this->request->wantsJson()) {
                 return response()->json([
-                    'error'   => true,
+                    'error' => true,
                     'message' => $e->getMessageBag()
                 ]);
             }
-
             return redirect()->back()->withErrors($e->getMessageBag())->withInput();
         }
     }
@@ -183,15 +150,12 @@ class OrdersController extends Controller
     public function destroy($id)
     {
         $deleted = $this->repository->delete($id);
-
         if (request()->wantsJson()) {
-
             return response()->json([
                 'message' => 'Order deleted.',
                 'deleted' => $deleted,
             ]);
         }
-
         return redirect()->back()->with('message', 'Order deleted.');
     }
 }
