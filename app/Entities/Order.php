@@ -30,7 +30,7 @@ class Order extends Model implements Transformable
 
     public function products()
     {
-        return $this->belongsToMany(Product::class, 'order_product', 'order_id', 'product_id');
+        return $this->belongsToMany(Product::class, 'order_product');
     }
 
 }

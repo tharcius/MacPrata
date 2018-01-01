@@ -17,7 +17,7 @@ class CreateOrdersTable extends Migration
             $table->increments('id');
 			$table->date('date');
 			$table->decimal('total');
-			$table->text('obs');
+			$table->text('obs')->nullable();
             $table->integer('person_id')->unsigned();
             $table->foreign('person_id')->references('id')->on('people');
             $table->integer('equipment_id')->unsigned();

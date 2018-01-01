@@ -2,6 +2,9 @@
 
 namespace MacPrata\Http\Controllers;
 use Illuminate\Http\Request;
+use MacPrata\Repositories\EquipmentRepository;
+use MacPrata\Repositories\PersonRepository;
+use MacPrata\Repositories\ProductRepository;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
 use MacPrata\Repositories\OrderRepository;
@@ -24,12 +27,27 @@ class OrdersController extends Controller
      * @var Request
      */
     private $request;
+    /**
+     * @var PersonRepository
+     */
+    private $personRepository;
+    /**
+     * @var EquipmentRepository
+     */
+    private $equipmentRepository;
+    /**
+     * @var ProductRepository
+     */
+    private $productRepository;
 
-    public function __construct(OrderRepository $repository, OrderValidator $validator, Request $request)
+    public function __construct(OrderRepository $repository, OrderValidator $validator, Request $request, PersonRepository $personRepository, EquipmentRepository $equipmentRepository, ProductRepository $productRepository)
     {
         $this->repository = $repository;
         $this->validator = $validator;
         $this->request = $request;
+        $this->personRepository = $personRepository;
+        $this->equipmentRepository = $equipmentRepository;
+        $this->productRepository = $productRepository;
     }
 
 
@@ -42,7 +60,15 @@ class OrdersController extends Controller
     {
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
         $orders = $this->repository->all();
-        return view('orders.index', compact('orders'));
+        return view('orders.index', compact('orders', 'products'));
+    }
+
+    public function create()
+    {
+        $people = $this->personRepository->pluck('name','id');
+        $equipments = $this->equipmentRepository->pluck('name','id');
+        $products = $this->productRepository->all();
+        return view('orders.create', ['equipments'=>$equipments, 'people'=>$people, 'products'=>$products]);
     }
 
     /**
@@ -56,9 +82,13 @@ class OrdersController extends Controller
     {
         try {
             $this->validator->with($this->request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
-            $order = $this->repository->create($this->request->all());
+            $dataOrder=$this->request->all();
+            $dataOrder['total'] = $dataOrder['d']['product']['value']*$dataOrder['d']['product']['amount'];
+            $dataOrder['date'] = date("d-m-Y", strtotime($dataOrder['date']));
+            unset($dataOrder['d']);
+            $order = $this->repository->create($dataOrder);
             $response = [
-                'message' => 'Order created.',
+                'message' => 'Ordem de Serviço criado com sucesso.',
                 'data' => $order->toArray(),
             ];
             return redirect()->back()->with('message', $response['message']);
@@ -103,7 +133,10 @@ class OrdersController extends Controller
     public function edit($id)
     {
         $order = $this->repository->find($id);
-        return view('orders.edit', compact('order'));
+        $people = $this->personRepository->pluck('name','id');
+        $equipments = $this->equipmentRepository->pluck('name','id');
+        $products = $this->productRepository->all();
+        return view('orders.edit', ['order'=>$order, 'equipments'=>$equipments, 'people'=>$people, 'products'=>$products]);
     }
 
 
@@ -119,9 +152,14 @@ class OrdersController extends Controller
     {
         try {
             $this->validator->with($this->request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
-            $order = $this->repository->update($this->request->all(), $id);
+            $dataOrder=$this->request->all();
+            $dataOrder['total'] = $dataOrder['d']['product']['value']*$dataOrder['d']['product']['amount'];
+            $dataOrder['date'] = date("d-m-Y", strtotime($dataOrder['date']));
+            unset($dataOrder['d']);
+//            dd($dataOrder);
+            $order = $this->repository->update($dataOrder, $id);
             $response = [
-                'message' => 'Order updated.',
+                'message' => 'Ordem de Serviço atualizada.',
                 'data' => $order->toArray(),
             ];
             if ($this->request->wantsJson()) {

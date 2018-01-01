@@ -1,21 +1,18 @@
-<!DOCTYPE html>
-<html>
-<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="author" content="Tharcius Vinicius Sumarelli Medeiros Silva">
     <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,AngularJS,Angular,Angular2,jQuery,CSS,HTML,RWD,Dashboard">
-    <link rel="shortcut icon" href="coreui/img/favicon.png">
+    <link rel="shortcut icon" href="/coreui/img/favicon.png">
 
     <title>Sistema MacPrata</title>
 
     <!-- Icons -->
-    <link href="{{ asset('coreui/css/font-awesome.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('coreui/css/simple-line-icons.css') }}" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css" rel="stylesheet">
 
     <!-- Main styles for this application -->
-    <link href="{{ asset('coreui/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('/coreui/css/style.css') }}" rel="stylesheet">
 
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -25,6 +22,4 @@
       ga('create', 'UA-9510961-27', 'auto');
       ga('send', 'pageview');
     </script>
-</head>
-<body class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden">
 
