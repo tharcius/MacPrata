@@ -187,13 +187,7 @@ class OrdersController extends Controller
      */
     public function destroy($id)
     {
-        $deleted = $this->repository->delete($id);
-        if (request()->wantsJson()) {
-            return response()->json([
-                'message' => 'Order deleted.',
-                'deleted' => $deleted,
-            ]);
-        }
-        return redirect()->back()->with('message', 'Order deleted.');
+        $this->repository->delete($id);
+        return redirect()->back()->with('message', 'Ordem de serviço apagada.');
     }
 }
