@@ -23,11 +23,10 @@
                         <td> {{ $order->date }} </td>
                         <td> {{ $order->total }} </td>
                         <td class="text-center">
-                            <a href="/ordens/{{ $order->id }}">Exibir</a>
-                            <a href="/ordens/{{ $order->id }}/editar">Editar</a>
-                            <a href="/ordens/{{ $order->id }}/apagar"
-                               onclick="return confirm('Deseja realmente apagar?')">
-                                Apagar </span>
+                            <a href="/ordens/{{ $order->id }}" title="Exibir"><i class="fa fa-search" aria-hidden="true"></i></a>
+                            <a href="/ordens/{{ $order->id }}/editar" title="Editar"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                            <a href="/ordens/{{ $order->id }}/apagar" title="Apagar" onclick="return confirm('Deseja realmente apagar?')">
+                                <i class="fa fa-trash-o" aria-hidden="true"></i>
                             </a>
 
                         </td>
